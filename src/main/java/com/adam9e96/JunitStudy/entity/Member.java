@@ -1,15 +1,14 @@
 package com.adam9e96.JunitStudy.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jdk.jshell.Snippet;
+import lombok.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Getter
 @Entity
+@Data
+@Builder
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,4 +16,5 @@ public class Member {
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
+
 }

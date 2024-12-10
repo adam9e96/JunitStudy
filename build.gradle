@@ -17,6 +17,9 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    testCompileOnly {
+        extendsFrom testAnnotationProcessor
+    }
 }
 
 repositories {
@@ -31,15 +34,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // Lombok을 사용하여 보일러플레이트 코드를 줄이기 위해 추가
-    compileOnly 'org.projectlombok:lombok'
+    compileOnly 'org.projectlombok:lombok'// 최신 버전으로 업데이트
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // 테스트 소스셋에서 Lombok을 사용하기 위해 추가
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
     // H2 인메모리 데이터베이스를 사용하기 위해 추가
     runtimeOnly 'com.h2database:h2'
-
-    // Lombok 어노테이션을 처리하기 위해 추가
-    annotationProcessor 'org.projectlombok:lombok'
 
     // Spring Boot의 테스트 지원을 위해 추가
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
