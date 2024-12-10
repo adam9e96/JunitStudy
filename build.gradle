@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.4.0'
+    id 'io.spring.dependency-management' version '1.1.6'
+}
+
+group = 'com.adam9e96'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 데이터 JPA를 사용하기 위해 추가
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // 웹 애플리케이션 개발을 위해 추가
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Lombok을 사용하여 보일러플레이트 코드를 줄이기 위해 추가
+    compileOnly 'org.projectlombok:lombok'
+
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // H2 인메모리 데이터베이스를 사용하기 위해 추가
+    runtimeOnly 'com.h2database:h2'
+
+    // Lombok 어노테이션을 처리하기 위해 추가
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Spring Boot의 테스트 지원을 위해 추가
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // JUnit 플랫폼 런처를 사용하여 테스트를 실행하기 위해 추가
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
