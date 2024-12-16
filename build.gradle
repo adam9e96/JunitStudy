@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
     // 데이터 JPA를 사용하기 위해 추가
+    // Jpa 구현 
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     // 웹 애플리케이션 개발을 위해 추가
