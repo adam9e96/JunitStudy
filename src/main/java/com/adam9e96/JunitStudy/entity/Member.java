@@ -15,10 +15,17 @@ import lombok.*;
  * )
  * </code>
  * </p>
+ * <p>
+ * {@code @Entity} 속성 중에 name 을 사용하면 name 의 값을 가진 테이블 이름과 매핑되고,
+ * 테이블 이름을 지정하지 않으면 클래스 이름과 같은 이름의 테이블과 매핑됩니다.
+ * <p>
+ * 이 클래스에서는 테이블 이름을 지정하지 않았으므로 클래스 이름과 같은 데이터베이스의 테이블인
+ * member 테이블과 매핑됩니다.
  */
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자
 @AllArgsConstructor
-@Entity
+//@Entity(name = "member_list") // 'member_list' 라는 이름을 가진 테이블과 매핑
+@Entity // Member 객체를 JPA가 관리하는 엔티티로 지정 합니다. Member 클래스와 실제 데이터베이스의 테이블을 매핑시킵니다.
 @Data
 @Builder
 public class Member {
@@ -26,7 +33,11 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false) // name 이라는 not null 컬럼과 매핑
     private String name;
+
+    public void changeName(String newName) {
+        this.name = newName;
+    }
 
 }
